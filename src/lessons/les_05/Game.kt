@@ -1,10 +1,13 @@
 package lessons.les_05
 
+import java.awt.Choice
+
 fun main() {
     val option = arrayOf("Камень", "Ножницы", "Бумага")
     val gameChoice = getGameChoice(option)
     // Вызов функции getUserChoice
     val userChoice = getUserChoice(option)
+    printResult(userChoice, gameChoice)
 }
 
 
@@ -33,4 +36,16 @@ fun getUserChoice(optionsParam: Array<String>): String {
         if (!isValidChoice) println("Ты ввел неправельное слово")
     }
     return userChoice
+}
+
+fun printResult(userChoice: String, gameChoice: String) {
+    val result: String
+    //определить результат
+    if (userChoice == gameChoice) result = "Tie!"
+    else if ((userChoice == "Камень" && gameChoice == "Ножницы") ||
+        (userChoice == "Бумага" && gameChoice == "Камень") ||
+        (userChoice == "Ножницы" && gameChoice == "Бумага")) result = "Ты победил!"
+    else result = "Ты проиграл!"
+    //вывести результат
+    println("Ты загадал $userChoice. Я загадал $gameChoice. $result")
 }
